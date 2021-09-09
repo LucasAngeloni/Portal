@@ -12,47 +12,30 @@
                  </button>
              </div>
              
-            <div class="modal-body">
-             	<form>
-                     <div class="form-group">
-                         <label for="txtNombre" class="col-form-label">Nombre:</label>
-                         <input type="text" class="form-control" id="txtNombre">
-                     </div>
-                     <div class="form-group">
-                         <label for="txtApellido" class="col-form-label">Apellido:</label>
-                         <input type="text" class="form-control" id="txtApellido">
-                     </div>
-                     <div class="form-group">
-                         <label for="txtDescripcionComunicador" class="col-form-label">Descripción personal:</label>
-                         <textarea class="form-control" id="txtDescripcionComunicador"></textarea>
-                     </div>
-             	</form>     
-	         </div>
-             <div class="modal-footer">
-             	<button class="btn btn-success" id="btnRegistrar" onclick="registrar()">Registrarse como comunicador</button>            
-             </div>
-            
+             <form method="post" action="ControladorUsuario">
+             <input type="hidden" name="instruccion" value="transformar_a_comunicador"> 
+				<div class="modal-body">
+					<div class="form-group">
+						<label for="txtNombre" class="col-form-label">Nombre:</label> <input
+							type="text" class="form-control" name="nombre" id="txtNombre">
+					</div>
+					<div class="form-group">
+						<label for="txtApellido" class="col-form-label">Apellido:</label>
+						<input type="text" class="form-control" name="apellido" id="txtApellido">
+					</div>
+					<div class="form-group">
+						<label for="txtDescripcionComunicador" class="col-form-label">Descripción
+							personal:</label>
+						<textarea class="form-control" name="descripcion" id="txtDescripcionComunicador"></textarea>
+					</div>
+
+				</div>
+
+				<div class="modal-footer">
+					<button class="btn btn-success" id="btnRegistrar"
+						type="submit">Registrarse como comunicador</button>
+				</div>
+			</form>
          </div>
      </div>
 </div>
-<script>
-function registrar(){
-	
-	var txtNombre = $("#txtNombre").val();
-	var txtDescripcion = $("#txtDescripcionComunicador").val();
-	var txtApellido = $("#txtApellido").val();
-	
-	$.ajax({
-		  url: "ControladorUsuario",
-		  data: {
-		    nombre: txtNombre,
-		    descripcion: txtDescripcion,
-		    apellido: txtApellido,
-		    instruccion: "transformar_a_comunicador"
-		  },
-		  success: function procesarRespuesta(datosRespuesta){
-				       $("#respuesta").html(datosRespuesta);
-		           }
-		});
-}
-</script>

@@ -171,7 +171,9 @@ public class CatalogoDeUsuarios {
 			throw new ExcepcionCampos("La clave que se desea modificar no es la correcta");		
 	}
 	
-	public void lectorAComunicador(String nombre_usuario, String nombre, String apellido, String descripcion) throws SQLException {
+	public void lectorAComunicador(String nombre_usuario, String nombre, String apellido, String descripcion) throws SQLException, ExcepcionCampos {
+		if(nombre.equals("") || apellido.equals("") || descripcion.equals(""))
+			throw new ExcepcionCampos("No puede haber campos vacíos");
 		try {
 			this.UsuarioData.lectorAComunicador(nombre_usuario, nombre, apellido, descripcion);
 		} catch (SQLException e) {

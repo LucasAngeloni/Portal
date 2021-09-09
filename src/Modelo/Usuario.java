@@ -319,4 +319,23 @@ public class Usuario extends BusinessEntity{
 	public void addLike(Comentario comentarioLike) {
 		this.comentariosQueLeGustan.add(comentarioLike);
 	}
+	
+	public Comunicador castComunicador(String nombre, String apellido, String descripcion) {
+		Comunicador com = new Comunicador(this.nombreUsuario);
+		com.setFechaNacimiento(fechaNacimiento);
+		com.setImagen(imagen);
+		com.setTelefono(telefono);
+		com.setContraseña(contraseña);
+		com.setEmail(email);
+		com.setPreferencias(preferencias);
+		com.setHilosGuardados(hilosGuardados);
+		com.setNotasRelevantes(notasRelevantes);
+		com.setAportesRelevantes(aportesRelevantes);
+		com.setComentariosQueLeGustan(comentariosQueLeGustan);
+		com.setApellido(apellido);
+		com.setNombre(nombre);
+		com.setDescripcion(descripcion);
+		
+		return com;
+	}
 }

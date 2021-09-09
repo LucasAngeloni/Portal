@@ -207,10 +207,12 @@ public class ControladorUsuario extends HttpServlet {
 		Usuario usuario = (Usuario)request.getSession().getAttribute("usuario");
 		try {
 			this.cu.lectorAComunicador(usuario.getNombreUsuario(), nombre, apellido, descripcion);
-			request.getSession().setAttribute("usuario", this.cc.getOne(usuario.getNombreUsuario()));
+			Comunicador comunicador = usuario.castComunicador(nombre, apellido, descripcion);
+			
+			request.getSession().setAttribute("usuario", comunicador);
 			request.setAttribute("Info","EXITO. Ahora eres un comunicador");
 		}
-		catch (SQLException e) {
+		catch (SQLException | ExcepcionCampos e) {
 			request.setAttribute("Error",e.getMessage());
 		}
 		finally {
