@@ -33,7 +33,7 @@ public class FactoryConnection {
 	public Connection getConnection() {
 		try {
 		   if(con == null || con.isClosed()) {
-			   con = DriverManager.getConnection(host2, user2, password2);
+			   con = DriverManager.getConnection(host, user, password);
 			   conectados = 0;
 		   }
 		} 
