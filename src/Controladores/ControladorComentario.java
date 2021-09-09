@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Logica.CatalogoDeComentarios;
+import Logica.CatalogoDeComentarios.LongitudMaximaException;
 import Logica.CatalogoDeHilos;
 import Logica.CatalogoDeHilos.NoExisteHiloException;
 import Logica.CatalogoDeUsuarios;
@@ -102,7 +103,7 @@ public class ControladorComentario extends HttpServlet {
 			this.cu.updatePreferencias(usuario, "comentar", hilo.getCategorias());
 			aporte.addComentario(comentario);
 		} 
-		catch (SQLException e) {
+		catch (SQLException | LongitudMaximaException e) {
 			request.setAttribute("Error",e.getMessage());
 		}
 		finally {
@@ -177,7 +178,7 @@ public class ControladorComentario extends HttpServlet {
 			request.setAttribute("comentario", comentarioPrincipal);
 			request.setAttribute("SUBCOMENTARIOS", comentarioPrincipal.getSubcomentarios());
 		} 
-		catch (SQLException e) {
+		catch (SQLException | LongitudMaximaException e) {
 			request.setAttribute("Error",e.getMessage());
 		}
 		finally {
@@ -207,12 +208,12 @@ public class ControladorComentario extends HttpServlet {
 			request.setAttribute("publicacion", (Aporte)publicacion);
 		}
 		comentario.setDescripcionComentario(texto_comentario);
-		publicacion.addComentario(comentario);
 		try {
 			this.cco.insertComentario(comentario);
+			publicacion.addComentario(comentario);
 			this.cu.updatePreferencias(usuario, "comentar", hilo.getCategorias());
 		} 
-		catch (SQLException e) {
+		catch (SQLException | LongitudMaximaException e) {
 			request.setAttribute("Error",e.getMessage());
 		}
 		finally {

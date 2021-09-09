@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="Modelo.*" %>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
 				<select class="form-control form-select" id="filtro"
 					name="tipo_filtro">
 					<option value="usuario">Usuario</option>
-					<option value="descripcion">DescripciÃ³n</option>
+					<option value="descripcion">Descripción</option>
 					<option value="com_padre">Comentario Padre</option>
 				</select> <input type="text" class="form-control" name="texto"
 					placeholder="Ej:" aria-label="Recipient's username"
@@ -79,7 +79,7 @@
 							<th scope="col">Usuario</th>
 							<th scope="col"><a href="${linkOrdenarPorFecha }">Fecha
 									del Comentario</a></th>
-							<th scope="col">DescripciÃ³n</th>
+							<th scope="col">Descripción</th>
 							<th scope="col"><a href="${linkOrdenarPorLikes }">Likes</a></th>
 							<th scope="col">Comentario Padre</th>
 							<th scope="col"></th>
@@ -120,7 +120,7 @@
 					<nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<li class="page-item"><a class="page-link" href="${linkAnterior}">Anterior</a></li>
-							<li class="page-item"><a class="page-link" href="${linkVerMas}">MÃ¡s</a></li>
+							<li class="page-item"><a class="page-link" href="${linkVerMas}">Más</a></li>
 						</ul>
 					</nav>
 				</div>

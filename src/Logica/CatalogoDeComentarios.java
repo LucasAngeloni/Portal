@@ -82,15 +82,19 @@ public class CatalogoDeComentarios {
 		}
 	}
 	
-	public void insertComentario(Comentario comentario) throws SQLException{
+	public void insertComentario(Comentario comentario) throws SQLException, LongitudMaximaException{
+		if(comentario.getDescripcionComentario().length() > 80 || comentario.getDescripcionComentario().length() <= 0)
+			throw new LongitudMaximaException("El comentario no puede tener más de 80 caracteres y debe tener al menos 1");
 		try {
 			this.comentarioData.insertComentario(comentario);
 		} catch (SQLException e) {
-			throw new SQLException("ERROR. No se pudo insertar el comentario");
+			throw new SQLException("ERROR. No se pudo insertar el comentario ");
 		}
 	}
 	
-	public void insertSubComentario(Comentario comentarioPadre, Comentario comentario) throws SQLException {
+	public void insertSubComentario(Comentario comentarioPadre, Comentario comentario) throws SQLException, LongitudMaximaException {
+		if(comentario.getDescripcionComentario().length() > 80 || comentario.getDescripcionComentario().length() <= 0)
+			throw new LongitudMaximaException("El comentario no puede tener más de 80 caracteres y debe tener al menos 1");
 		try {
 			this.comentarioData.insertSubComentario(comentario);
 			comentarioPadre.addSubcomentario(comentario);
@@ -193,5 +197,17 @@ public class CatalogoDeComentarios {
 				}
 			}
 		}
+	}
+	public class LongitudMaximaException extends Exception {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -3689718163649355575L;
+
+		public LongitudMaximaException(String msg) {
+			super(msg);
+		}
+
 	}
 }

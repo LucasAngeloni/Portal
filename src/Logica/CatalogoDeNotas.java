@@ -52,13 +52,7 @@ public class CatalogoDeNotas {
 		}
 	}
 	
-	public void insert(int hilo, ArrayList<Nota> notas) throws LongitudMaximaException, SQLException {
-		
-		for(Nota nota: notas) {
-			if(nota.getDescripcion().length()> 180 )
-				throw new LongitudMaximaException("La nota no puede superar los 180 caracteres");
-			nota.setIdHilo(hilo);
-		}
+	public void insert(ArrayList<Nota> notas) throws LongitudMaximaException, SQLException {
 		
 		try {
 			this.notasData.insert(notas);

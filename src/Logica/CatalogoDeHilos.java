@@ -1,7 +1,6 @@
 package Logica;
 
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +8,7 @@ import java.util.regex.Pattern;
 import Datos.HiloData;
 import Modelo.Categoria;
 import Modelo.Hilo;
+import Modelo.Nota;
 import Modelo.Usuario;
 
 public class CatalogoDeHilos {
@@ -50,12 +50,12 @@ public class CatalogoDeHilos {
 		}
 	}
 	
-	public ArrayList<Hilo> getHilosMasRecientes(LocalDateTime fecha) throws SQLException{
+	public ArrayList<Hilo> getHilosMasRecientes() throws SQLException{
 		
 		try {
-			return this.hiloData.getHilosMasRecientes(fecha);
+			return this.hiloData.getHilosMasRecientes();
 		} catch (SQLException e) {
-			throw new SQLException("Error al recuperar los hilos");
+			throw new SQLException("Error al recuperar los hilos "+e.getMessage());
 		}
 	}
 	
@@ -117,13 +117,18 @@ public class CatalogoDeHilos {
 	
 	public void crearHilo(Hilo hilo) throws SQLException, LongitudMaximaException, Logica.CatalogoDeNotas.LongitudMaximaException {
 		
-		if(hilo.getTitulo().length() > 80 )
-			throw new LongitudMaximaException("El título del hilo no puede tener más de 80 caracteres");
-		
+		if(hilo.getTitulo().length() > 80 || hilo.getTitulo().length() <= 0)
+			throw new LongitudMaximaException("El título del hilo no puede tener más de 80 caracteres y al menos debe tener 1");
+		for(Nota nota: hilo.getNotas()) {
+			if(nota.getDescripcion().length() > 180 || hilo.getTitulo().length() <= 0)
+				throw new LongitudMaximaException("La nota no puede superar los 180 caracteres y al menos debe tener 1");
+		}
 		CatalogoDeNotas cn = new CatalogoDeNotas();
 		try {
 			this.hiloData.insert(hilo);
-			cn.insert(hilo.getIdHilo(),hilo.getNotas());
+			for(Nota nota: hilo.getNotas()) 
+				nota.setIdHilo(hilo.getIdHilo());
+			cn.insert(hilo.getNotas());
 			hilo.getComunicador().addHilo(hilo);
 		} 
 		catch (SQLException e) {

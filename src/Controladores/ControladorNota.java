@@ -169,12 +169,13 @@ public class ControladorNota extends HttpServlet {
 			}
 			else {
 				Nota notaNueva = new Nota(descripcion);
+				notaNueva.setIdHilo(hilo.getIdHilo());
 
 				hilo.addNota(notaNueva);
 				ArrayList<Nota> notas = new ArrayList<Nota>();
 				notas.add(notaNueva);
 
-				this.cn.insert(hilo.getIdHilo(), notas);
+				this.cn.insert(notas);
 				
 				request.getSession().setAttribute("hilo_abierto", hilo);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/vistaHilo.jsp");

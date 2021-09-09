@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="Modelo.*" %>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Comunicador</th>
-							<th scope="col" align="center">TÃ­tulo</th>
+							<th scope="col" align="center">Título</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
@@ -64,8 +64,8 @@
 				<table class="table table-dark table-striped">
 					<thead>
 						<tr>
-							<th scope="col">Fecha de PublicaciÃ³n</th>
-							<th scope="col">DescripciÃ³n de la Nota</th>
+							<th scope="col">Fecha de Publicación</th>
+							<th scope="col">Descripción de la Nota</th>
 							<th scope="col">Relevancia</th>
 							<th scope="col"></th>
 						</tr>

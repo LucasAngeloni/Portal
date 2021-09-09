@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html;charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="Modelo.*" %>
 <!DOCTYPE html>
@@ -47,7 +47,7 @@
 						<tr>
 							<th scope="col">Imagen</th>
 							<th scope="col">Nombre de Usuario</th>
-							<th scope="col">TelÃ©fono</th>
+							<th scope="col">Teléfono</th>
 							<th scope="col">Email</th>
 							<th scope="col">Fecha de Nacimiento</th>
 							<th scope="col"></th>

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<h3><strong>Elige una opciÃ³n</strong></h3>
+			<h3><strong>Elige una opción</strong></h3>
 		</div>
 		<hr>
 		<div class="row image-group">

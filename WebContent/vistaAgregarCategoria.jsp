@@ -1,25 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html;charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" import="java.util.*"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 	
-	<title>Crear categorÃ­a</title>
+	<title>Crear categoría</title>
 </head>
 <body>
 
 	<div class="container">
 		<div class="row registro">
 			<div class="col-12">
-				<h3>Crear categorÃ­a</h3>
+				<h3>Crear categoría</h3>
 			</div>
 			<div class="col-6">
 				<form id="formRegistro" name="formRegistro" method="post"
@@ -28,7 +27,7 @@
 
 					<div class="form-group row">
 						<label for="nombre_categoria" class="col-3 col-form-label">Nombre
-							de la categorÃ­a</label>
+							de la categoría</label>
 						<div class="col-9">
 							<input type="text" class="form-control" id="txtNombreCategoria"
 								name="nombre_categoria" placeholder="Ej: Deportes"

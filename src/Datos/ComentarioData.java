@@ -132,8 +132,6 @@ public class ComentarioData{
 				comentarioActual.setDescripcionComentario(resultSet.getString("desc_comentario"));
 				comentarioActual.setLikes(resultSet.getInt("likes"));
 				comentarioActual.setSubcomentarios(this.getSubcomentarios(comentarioActual));
-				//comentarioActual.setNroSubcomentarios(this.getNroSubcomentarios(resultSet.getTimestamp("fecha_comentario"), 
-				//		resultSet.getString("nombre_usuario")));
 				
 				comentarios.add(comentarioActual);
 			}
@@ -218,8 +216,6 @@ public class ComentarioData{
 				subcomentarioActual.setFechaComentario(resultSet.getTimestamp("fecha_comentario").toLocalDateTime());
 				subcomentarioActual.setLikes(resultSet.getInt("likes"));
 				subcomentarioActual.setSubcomentarios(this.getSubcomentarios(subcomentarioActual));
-				//subcomentarioActual.setNroSubcomentarios(this.getNroSubcomentarios(resultSet.getTimestamp("fecha_comentario"), 
-					//	resultSet.getString("nombre_usuario")));
 				
 				subcomentarios.add(subcomentarioActual);
 			}

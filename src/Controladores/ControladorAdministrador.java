@@ -223,7 +223,7 @@ public class ControladorAdministrador extends HttpServlet {
 
 	private void ordenarComentarios(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		@SuppressWarnings("unchecked")
-		ArrayList<Comentario> comentarios = (ArrayList<Comentario>)request.getSession().getAttribute("comentarios");
+		ArrayList<Comentario> comentarios = (ArrayList<Comentario>)request.getSession().getAttribute("comentarios_totales");
 		
 		String tipo_ordenamiento_anterior;
 		switch(request.getParameter("atributo")) {
@@ -253,6 +253,7 @@ public class ControladorAdministrador extends HttpServlet {
 			}			
 			break;
 		}
+		request.setAttribute("comentarios", comentarios);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/vistaComentariosAdministrador.jsp");
 		dispatcher.forward(request, response);
 	}
@@ -261,9 +262,16 @@ public class ControladorAdministrador extends HttpServlet {
 		
 		String usuario = request.getParameter("usuario");
 		LocalDateTime fecha_comentario = LocalDateTime.parse(request.getParameter("fecha"));
+		ArrayList<Comentario> comentarios = (ArrayList<Comentario>)request.getSession().getAttribute("comentarios_totales");
 		
 		try {
 			this.cco.delete(fecha_comentario, usuario);
+			for(Comentario comentario: comentarios)
+				if(comentario.getNombreUsuario().equals(usuario) && comentario.getFechaComentario().equals(fecha_comentario)) {
+					comentarios.remove(comentario);
+					break;
+				}
+					
 			request.setAttribute("Info", "Comentario eliminado correctamente");
 		} catch (SQLException e) {
 			request.setAttribute("Error", e.getMessage());
@@ -433,9 +441,12 @@ public class ControladorAdministrador extends HttpServlet {
 			switch(accion) {
 			case "siguiente":
 				i = Integer.parseInt(request.getParameter("indice").toString());
-				if(i >= comentarios.size())
+				if(i >= comentarios.size()) {
 					request.setAttribute("Info", "No hay más comentarios");
-				request.setAttribute("indice", i+10);
+					request.setAttribute("indice", i);
+				}
+				else
+					request.setAttribute("indice", i+10);
 				break;
 			case "anterior":
 				i = Integer.parseInt(request.getParameter("indice").toString());
@@ -483,28 +494,30 @@ public class ControladorAdministrador extends HttpServlet {
 			ArrayList<Hilo> hilos_salida = new ArrayList<Hilo>();
 			int i = 0;
 			if(hilos == null) {
-				hilos = this.ch.getHilosMasRecientes(LocalDateTime.now());
+				hilos = this.ch.getHilosMasRecientes();
 				request.getSession().setAttribute("hilos_totales", hilos);
 			}
-			else {
-				String accion = request.getParameter("accion");
-				if(accion == null) accion = "";
-				switch(accion) {
-				case "siguiente":
-					i = Integer.parseInt(request.getParameter("indice").toString());
-					if(i >= hilos.size())
-						request.setAttribute("Info", "No hay más hilos");
-					request.setAttribute("indice", i+5);
-					break;
-				case "anterior":
-					i = Integer.parseInt(request.getParameter("indice").toString());
-					i = i-5;
-					if(i<0) i=0;
+
+			String accion = request.getParameter("accion");
+			if(accion == null) accion = "";
+			switch(accion) {
+			case "siguiente":
+				i = Integer.parseInt(request.getParameter("indice").toString());
+				if(i >= hilos.size()) {
+					request.setAttribute("Info", "No hay más hilos");
 					request.setAttribute("indice", i);
-					break;
-				default:
-					request.setAttribute("indice", 5);
 				}
+				else
+					request.setAttribute("indice", i+5);
+				break;
+			case "anterior":
+				i = Integer.parseInt(request.getParameter("indice").toString());
+				i = i-5;
+				if(i<0) i=0;
+				request.setAttribute("indice", i);
+				break;
+			default:
+				request.setAttribute("indice", 5);
 			}
 			int limite = i+5;
 			while(i < limite && i < hilos.size()) {

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="modal fade" id="escribir" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -21,7 +21,7 @@
 						<input name="titulo" type="text" class="form-control" id="txtTitulo">
 					</div>
 					<div class="form-group">
-						<label for="txtDescripcion" class="col-form-label">DescripciÃ³n:</label>
+						<label for="txtDescripcion" class="col-form-label">Descripción:</label>
 						<textarea name="descripcion" class="form-control" id="txtDescripcion"></textarea>
 					</div>
 					<div class="form-group">

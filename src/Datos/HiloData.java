@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import Modelo.Categoria;
@@ -113,20 +111,17 @@ public class HiloData{
 		return hilosImportantes;
 	}
 	
-	public ArrayList<Hilo> getHilosMasRecientes(LocalDateTime fecha) throws SQLException{
+	public ArrayList<Hilo> getHilosMasRecientes() throws SQLException{
 		
 		ArrayList<Hilo> hilosRecientes = new ArrayList<Hilo>();
 		String consulta = "select distinct(hilos.id_hilo), usuario, relevancia_hilo, nro_aportes,titulo from hilos\r\n" + 
-				"inner join notas on notas.id_hilo = hilos.id_hilo\r\n" + 
-				"where fecha_publicacion <= ? \r\n" + 
-				"order by fecha_publicacion desc";
+				"inner join notas on notas.id_hilo = hilos.id_hilo\r\n";
 		
 		PreparedStatement pst = null;
 		ResultSet resultSet = null;
 		
 		try{
 			pst = FactoryConnection.getInstancia().getConnection().prepareStatement(consulta);
-			pst.setTimestamp(1, Timestamp.valueOf(fecha));
 
 			resultSet = pst.executeQuery();
 			Hilo hiloActual;
@@ -143,7 +138,6 @@ public class HiloData{
 			}
 		}
 		catch(SQLException | ClassNotFoundException e) {
-			e.printStackTrace();
 			throw new SQLException(e);
 		}
 		finally{

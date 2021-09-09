@@ -155,22 +155,22 @@ public class Comentario {
 		if(tiempo > 60) {
 			tiempo = tiempo/60;
 			respuesta = tiempo + " horas";
-		}
-		if(tiempo > 24) {
-			tiempo = tiempo/24;
-			respuesta = tiempo + " dias";
-		}
-		if(tiempo > 7) {
-			tiempo = tiempo/7;
-			respuesta = tiempo + " semanas";
-		}
-		if(tiempo > 30.0/7) {
-			tiempo = tiempo/4;
-			respuesta = tiempo + " meses";
-		}
-		if(tiempo > 12) {
-			tiempo = tiempo/12;
-			respuesta = tiempo + " años";
+			if(tiempo > 24) {
+				tiempo = tiempo/24;
+				respuesta = tiempo + " dias";
+				if(tiempo > 7) {
+					tiempo = tiempo/7;
+					respuesta = tiempo + " semanas";
+					if(tiempo > 30.0/7) {
+						tiempo = tiempo/4;
+						respuesta = tiempo + " meses";
+						if(tiempo > 12) {
+							tiempo = tiempo/12;
+							respuesta = tiempo + " años";
+						}
+					}
+				}
+			}
 		}
 		
 		return respuesta;

@@ -168,6 +168,8 @@ public class ControladorUsuario extends HttpServlet {
 		else
 			usuarioModificado = (Comunicador)request.getSession().getAttribute("usuario");
 		
+		String email_anterior = usuarioModificado.getEmail();
+		String telefono_anterior = usuarioModificado.getTelefono();
 		usuarioModificado.setEmail(email);
 		usuarioModificado.setTelefono(telefono);
 		usuarioModificado.setState(States.MODIFIED);
@@ -181,9 +183,13 @@ public class ControladorUsuario extends HttpServlet {
 		}
 		catch (SQLException | ExcepcionCampos e) {
 			request.setAttribute("Error",e.getMessage());
+			usuarioModificado.setEmail(email_anterior);
+			usuarioModificado.setTelefono(telefono_anterior);
 		}
 		catch(DateTimeParseException e) {
 			request.setAttribute("Error","El formato de la fecha de nacimiento no es válido");
+			usuarioModificado.setEmail(email_anterior);
+			usuarioModificado.setTelefono(telefono_anterior);
 		}
 		finally {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/perfil.jsp");

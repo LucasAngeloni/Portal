@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" import="java.util.*"%>
 
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 	
-	<title>Modificar categorÃ­a</title>
+	<title>Modificar categoría</title>
 </head>
 <body>
 <%
@@ -23,7 +23,7 @@ if(request.getParameter("imagen_categoria") != null) hayImagen = true;
 	<div class="container">
 		<div class="row registro">
 			<div class="col-12">
-				<h3>Modificar categorÃ­a</h3>
+				<h3>Modificar categoría</h3>
 			</div>
 			<div class="col-6">
 				<form id="formModificar" name="formModificar" method="post"
@@ -33,7 +33,7 @@ if(request.getParameter("imagen_categoria") != null) hayImagen = true;
 
 					<div class="form-group row">
 						<label for="nombre_categoria" class="col-3 col-form-label">Nombre
-							de la categorÃ­a</label>
+							de la categoría</label>
 						<div class="col-9">
 							<input type="text" class="form-control" id="txtNombreCategoria"
 								name="nombre_categoria" placeholder="Ej: Deportes"
