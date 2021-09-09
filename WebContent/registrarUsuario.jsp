@@ -108,7 +108,7 @@ else
 					<div class="form-group row">
 						<label for="clave" class="col-3 col-form-label">Clave</label>
 						<div class="col-9">
-							<input type="text" class="form-control" id="txtClave"
+							<input type="password" class="form-control" id="txtClave"
 								name="clave" placeholder="Clave">
 						</div>
 					</div>
@@ -116,7 +116,7 @@ else
 						<label for="repeticionClave" class="col-3 col-form-label">Repetir
 							clave</label>
 						<div class="col-9">
-							<input type="text" class="form-control" id="txtRepeticionClave"
+							<input type="password" class="form-control" id="txtRepeticionClave"
 								name="repeticionClave" placeholder="Repetir la clave">
 						</div>
 					</div>

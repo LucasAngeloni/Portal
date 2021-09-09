@@ -139,7 +139,7 @@
 							<label for="claveActual" class="col-3 col-form-label">Clave
 								actual</label>
 							<div class="col-6">
-								<input type="text" class="form-control" id="txtClaveActual"
+								<input type="password" class="form-control" id="txtClaveActual"
 									name="claveActual">
 							</div>
 						</div>
@@ -147,7 +147,7 @@
 							<label for="claveNueva" class="col-3 col-form-label">Clave
 								nueva</label>
 							<div class="col-6">
-								<input type="text" class="form-control" id="txtClaveNueva"
+								<input type="password" class="form-control" id="txtClaveNueva"
 									name="claveNueva">
 							</div>
 						</div>
